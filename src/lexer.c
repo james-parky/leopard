@@ -103,7 +103,20 @@ void lex_line(lexer* lex, char* buf, size_t line_num){
     }
 }
 
-void lexer_lex(lexer* lex){
+void remove_token(lexer* lex, size_t index){for(size_t i = index; i < lex->tok_count-1; i++) lex->tok_buf[i] = lex->tok_buf[i + 1];}
+
+void remove_comment_toks(lexer* lex){
+    for(size_t i = 0; i < lex->tok_count; i++){
+        size_t rem_count = 0;
+        if(lex->tok_buf[i]->type == TOK_COMMENT){
+            remove_token(lex, i);
+            rem_count++;
+        }
+        lex->tok_count-=rem_count;
+    }
+}
+
+void lexer_lex(lexer* lex, int remove_comments){
     size_t line_num = 0;
     char line_buf[BUF_MAX];
     while(fgets(line_buf, BUF_MAX, lex->file) != NULL){
@@ -112,8 +125,11 @@ void lexer_lex(lexer* lex){
     }
     lexer_reset_buf_index(lex);
     lexer_tok_dump(lex);
+    if(remove_comments) remove_comment_toks(lex);
+    lexer_reset_buf_index(lex);
+    lexer_tok_dump(lex);
 }
 
-void lexer_tok_dump(lexer* lex){for(size_t i = 0; i < lex->tok_count; i++) print_tok(lex->tok_buf[i]);}
+void lexer_tok_dump(lexer* lex){for(size_t i = 0; i < lex->tok_count; i++) print_tok(i, lex->tok_buf[i]);}
 
-void lexer_reset_buf_index(lexer* lex){lex->tok_buf_index = 0;}
+void lexer_reset_buf_index(lexer* lex){lex->tok_buf_index = 0; lex->tok_buf[lex->tok_count] = NULL;}
