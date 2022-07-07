@@ -1,6 +1,8 @@
 #ifndef __TOKEN_H__
 #define __TOKEN_H__
 
+#include <stddef.h>
+
 typedef enum {  
     TOK_IDENTIFIER,
     TOK_STRING,
