@@ -74,10 +74,10 @@ void lex_line(lexer* lex, char* buf, size_t line_num){
             case ',': lexer_add_tok(lex, TOK_COMMA, ",", line_num, col); break; 
             case '#': lexer_add_tok(lex, TOK_COMMENT, get_comment(buf + col), line_num, col); return;
             case '"':{
-                    size_t str_len = get_str_len(buf + col);
-                    char* str = substr(buf + col, str_len);
+                    size_t str_len = get_str_len(buf + col + 1);
+                    char* str = substr(buf + col + 1, str_len);
                     lexer_add_tok(lex, TOK_STRING, str, line_num, col);
-                    col += str_len;
+                    col += str_len + 1;
                 }
                 break;
             default:
@@ -124,7 +124,7 @@ void lexer_lex(lexer* lex, int remove_comments){
         line_num++;
     }
     lexer_reset_buf_index(lex);
-    lexer_tok_dump(lex);
+    //lexer_tok_dump(lex);
     if(remove_comments) remove_comment_toks(lex);
     lexer_reset_buf_index(lex);
     lexer_tok_dump(lex);
