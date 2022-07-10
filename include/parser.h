@@ -15,9 +15,11 @@ typedef struct {
     char* entry_point;
     size_t instr_buf_index, instr_count, label_buf_index, label_count, var_buf_index, var_count;
     token* current_tok;
+    variable* current_var;
 } parser;
 
 parser* parser_init(lexer* lex);
 void parser_parse_program(parser* parser);
+void parser_reset_buf_indexes(parser* parser);
 
 #endif
