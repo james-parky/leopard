@@ -49,7 +49,7 @@ size_t get_identifier_len(char* buf){
 
 size_t get_num_len(char* buf){
     size_t i = 0;
-    while(buf[i] && (isdigit(buf[i])) || isxdigit(buf[i])) i++;
+    while(buf[i] && (isdigit(buf[i]) || isxdigit(buf[i]))) i++;
     return i;
 }
 
@@ -118,8 +118,8 @@ void remove_comment_toks(lexer* lex){
 
 void lexer_lex(lexer* lex, int remove_comments){
     size_t line_num = 0;
-    char line_buf[BUF_MAX];
-    while(fgets(line_buf, BUF_MAX, lex->file) != NULL){
+    char line_buf[LEX_BUF_MAX];
+    while(fgets(line_buf, LEX_BUF_MAX, lex->file) != NULL){
         if(!is_empty_line(line_buf)) lex_line(lex, line_buf, line_num);
         line_num++;
     }
@@ -127,7 +127,7 @@ void lexer_lex(lexer* lex, int remove_comments){
     //lexer_tok_dump(lex);
     if(remove_comments) remove_comment_toks(lex);
     lexer_reset_buf_index(lex);
-    lexer_tok_dump(lex);
+    //lexer_tok_dump(lex);
 }
 
 void lexer_tok_dump(lexer* lex){for(size_t i = 0; i < lex->tok_count; i++) print_tok(i, lex->tok_buf[i]);}

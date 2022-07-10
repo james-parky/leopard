@@ -4,17 +4,17 @@
 #include <stdio.h>
 #include "token.h"
 
-#define BUF_MAX 1000
+#define LEX_BUF_MAX 1000
 
 typedef struct {
     FILE* file;
-    token* tok_buf[BUF_MAX];
+    token* tok_buf[LEX_BUF_MAX];
     size_t tok_buf_index;
     size_t tok_count;
 } lexer;
  
 lexer* lexer_init(FILE* file);
-void lexer_lex(lexer* lex);
+void lexer_lex(lexer* lex, int remove_comments);
 void lexer_tok_dump(lexer* lex);
 void lexer_reset_buf_index(lexer* lex);
 #endif
