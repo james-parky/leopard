@@ -5,7 +5,7 @@
 
 #include "operand.h"
 
-#define BUF_MAX 1000
+#define BUF_MAX 255
 
 typedef enum {
     ADD,
@@ -87,5 +87,5 @@ typedef struct {
     size_t operand_buf_index;
 } instruction;
 
-instruction* new_instruction(char* opcode_str, operand* operands[]);
+instruction* new_instruction(char* opcode_str, operand* operands[], size_t len);
 #endif

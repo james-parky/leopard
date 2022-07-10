@@ -18,4 +18,5 @@ typedef struct {
 } value;
 
 value* new_value(value_type type, char* val);
+char* get_val(value* value);
 #endif
