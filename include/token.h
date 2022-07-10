@@ -28,6 +28,6 @@ typedef struct token {
 } token;
 
 token* new_tok(token_type type, char* val, size_t line_num, size_t col_num);
-void print_tok(token* tok);
+void print_tok(size_t i, token* tok);
 
 #endif
