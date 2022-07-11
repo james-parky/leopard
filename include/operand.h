@@ -18,6 +18,10 @@ typedef struct {
     char* val;
 } operand;
 
+/*****************************************************************************
+ * new_operand: Creates a new operand struct, using the given arguments and  *
+ *              returns a pointer to said operand.                           * 
+ *****************************************************************************/
 operand* new_operand(operand_type type, char* val);
 
 #endif

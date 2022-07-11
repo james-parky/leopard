@@ -8,5 +8,10 @@ typedef struct {
     char* val;
 } label;
 
+/*****************************************************************************
+ * new_label: Creates a new label struct using the given arguments and       *
+ *            returns a pointer to said label.                               *
+ *****************************************************************************/
 label* new_label(size_t index, char* val);
+
 #endif
