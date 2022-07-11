@@ -1,10 +1,10 @@
 #ifndef __PARSER_H__
 #define __PARSER_H__
 
+#include "instruction.h"
+#include "label.h"
 #include "lexer.h"
 #include "token.h"
-#include "label.h"
-#include "instruction.h"
 #include "variable.h"
 
 typedef struct {
@@ -18,8 +18,24 @@ typedef struct {
     variable* current_var;
 } parser;
 
+/****************************************************************************
+ * parser_init: Creates a new parser struct, initialise the struct          *
+ *              variables and returns a pointer to said parser.             *
+ ****************************************************************************/
 parser* parser_init(lexer* lex);
+
+/****************************************************************************
+ * parser_parse_program: Analyzes the tokens in the given parse struct and  *
+ *                       parses them following the MIPS32 assembly code     *
+ *                       specification.                                     *
+ ****************************************************************************/
 void parser_parse_program(parser* parser);
+
+/****************************************************************************
+ * parser_reset_buf_indexes: Resets the buffer indexes for the variable,    *
+ *                           instruction and label buffers of the given     *
+ *                           parser struct.                                 *
+ ****************************************************************************/
 void parser_reset_buf_indexes(parser* parser);
 
 #endif

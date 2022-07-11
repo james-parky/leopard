@@ -17,6 +17,10 @@ typedef struct {
     char* val;
 } value;
 
+/****************************************************************************
+ * new_value: Creates a new value struct using the given arguments and      *
+ *            returns a pointer to said value.                              *
+ ****************************************************************************/
 value* new_value(value_type type, char* val);
-char* get_val(value* value);
+
 #endif
