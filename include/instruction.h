@@ -18,7 +18,7 @@ typedef enum {
 
 typedef struct {
     char* opcode;
-    operand* operands[BUF_MAX];
+    operand* operands[3];
     size_t operand_buf_index;
 } instruction;
 
@@ -26,6 +26,9 @@ typedef struct {
  * new_instruction: Creates a new instruction struct using the given         *
  *                  arguments and returns a pointer to said instruction.     *
  ****************************************************************************/
-instruction* new_instruction(char* opcode_str, operand* operands[],
-                                size_t len);
+instruction* new_instruction(char* opcode_str);
+
+void instruction_add_operand(instruction* instr, operand_type type,
+                                char* val);
+
 #endif
