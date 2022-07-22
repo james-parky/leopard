@@ -9,15 +9,19 @@
 
 typedef struct {
     lexer* lex;
+
     instruction* instr_buf[BUF_MAX];
     label* label_buf[BUF_MAX];
     variable* var_buf[BUF_MAX];
     char* entry_point;
+
     size_t instr_buf_index, instr_count;
     size_t label_buf_index, label_count;
     size_t var_buf_index, var_count;
+
     token* current_tok;
     variable* current_var;
+    instruction* current_instr;
 } parser;
 
 /*****************************************************************************
@@ -39,5 +43,10 @@ void parser_parse_program(parser* parser);
  *                           parser struct.                                  *
  *****************************************************************************/
 void parser_reset_buf_indexes(parser* parser);
+
+void parser_free_all(parser* parser);
+
+token* prev_tok(parser* parser, const int num);
+
 
 #endif
