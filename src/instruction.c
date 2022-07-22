@@ -8,10 +8,7 @@
 
 instruction* new_instruction(char* opcode_str) {
     instruction* instr = malloc(sizeof(instruction));
-    instr->opcode = opcode_str;
-    for(size_t i = 0; i < 3; i++)
-        instr->operands[i] = malloc(sizeof(operand*));
-    instr->operands[2] =  NULL;
+    instr->opcode = strdup(opcode_str);
     return instr;
 }
 

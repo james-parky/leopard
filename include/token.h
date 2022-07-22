@@ -16,13 +16,14 @@ typedef enum {
     TOK_MINUS,
     TOK_FULLSTOP,
     TOK_DEC_NUM,
-    TOK_HEX_NUM
+    TOK_HEX_NUM,
+    TOK_EOF
 } token_type;
 
 typedef struct token {
     token_type type;
-    char* val;
     size_t line_num, col_num;
+    char* val;
 } token;
 
 /*****************************************************************************

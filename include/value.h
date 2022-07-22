@@ -3,6 +3,7 @@
 
 #include "token.h"
 
+
 typedef enum {
     VAL_DEC_NUM,
     VAL_NEG_DEC_NUM,

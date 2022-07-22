@@ -6,7 +6,6 @@
 
 variable* new_variable(variable_type type, char* name){
     variable* var = malloc(sizeof(variable));
-    if(var == NULL) printf("not allocated\n");
     var->type = type;
     var->name = name;
     var->value_buf_index = 0;

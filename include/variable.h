@@ -5,7 +5,7 @@
 
 #include "value.h"
 
-#define BUF_MAX 255
+#define VALUE_BUF_MAX 32
 
 typedef enum {
     VAR_WORD,
@@ -19,7 +19,7 @@ typedef enum {
 typedef struct {
     variable_type type;
     char* name;
-    value* value_buf[BUF_MAX];
+    value* value_buf[VALUE_BUF_MAX];
     size_t value_buf_index;
     size_t value_count;
 } variable;
