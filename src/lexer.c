@@ -101,13 +101,21 @@ char* substr (const char* buf, size_t len) {
     return substr;
 }
 
+/*****************************************************************************
+ * is_identifier: Returns whether the provided char is a letter or           *
+ *                underscore.                                                *
+ *****************************************************************************/
+int is_identifier (const char c) {
+    return isalpha(c) || c == '_';
+}
 
 /*****************************************************************************
  * lex_line: Check each char in the given line buffer and create a token     *
  *           based on its value. Multi-character vauled tokens, such as      *
  *           comments and strings are also lexed correctly. When a valid     *
  *           token is found, it is added to the given lexer's token buffer   *
- *           using the lexer_add_tok() function.                             *   
+ *           using the lexer_add_tok() function. Throws an error if a        *
+ *           non-ASCII character is read.                                    *   
  *****************************************************************************/
 void lex_line (lexer* lex, char* buf, size_t line_num) {
     size_t col = 0;
@@ -116,6 +124,7 @@ void lex_line (lexer* lex, char* buf, size_t line_num) {
             case ' ': break;
             case '\n': break;
             case '\t': break;
+            case '\r': break;
             case '-': 
                 lexer_add_tok(lex, TOK_MINUS, "-", line_num, col); break; 
             case '+': 
@@ -145,7 +154,7 @@ void lex_line (lexer* lex, char* buf, size_t line_num) {
                 }
                 break;
             default:
-                if(isalpha(buf[col]) || buf[col] == '_') {
+                if(is_identifier(buf[col])) {
                     size_t identifier_len = get_identifier_len(buf + col);
                     char* identifier = substr(buf + col, identifier_len);
                     lexer_add_tok(lex, TOK_IDENTIFIER, identifier, line_num,
@@ -163,8 +172,7 @@ void lex_line (lexer* lex, char* buf, size_t line_num) {
                         free(hex_num);
                     } else {
                         size_t dec_num_len = get_num_len(buf + col);
-                        char* dec_num = malloc(sizeof(char) * dec_num_len + 1);
-                        strncpy(dec_num, buf + col, dec_num_len);
+                        char* dec_num = substr(buf + col, dec_num_len);
                         lexer_add_tok(lex, TOK_DEC_NUM, dec_num, line_num,
                                         col);
                         col += dec_num_len - 1;

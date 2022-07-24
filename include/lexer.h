@@ -37,8 +37,7 @@ void lexer_lex (lexer* lex, int remove_comments);
 void lexer_tok_dump (lexer* lex);
 
 /*****************************************************************************
- * lexer_reset_buf_index: Resets the token buffer index and sets the token   *
- *                        count for the given lexer struct.                  *
+ * lexer_reset_buf_index: Resets the token buffer index for the given lexer  *
  *****************************************************************************/
 void lexer_reset_buf_index (lexer* lex);
 
