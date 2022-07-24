@@ -223,7 +223,6 @@ void parse_variable_declaration (parser* parser, char* var_name) {
 }
 
 void parse_data_section (parser* parser) {
-    printf("parsing data sec\n");
     if (accept(parser, TOK_FULLSTOP)) {
         if (accept(parser, TOK_IDENTIFIER)) {
             if (strcmp(prev_tok(parser, 1)->val, "data")!= 0) 
@@ -400,7 +399,6 @@ void parse_instruction (parser* parser) {
 }
 
 void parse_text_section (parser* parser) {
-    printf("Parsing text section\n");
     if (accept(parser, TOK_FULLSTOP)) {
         if (accept(parser, TOK_IDENTIFIER)) {
             if (strcmp(prev_tok(parser, 1)->val, "text") != 0)
@@ -434,6 +432,7 @@ void parse_text_section (parser* parser) {
 
 void parser_parse_program (parser* parser) {
     if (accept(parser, TOK_FULLSTOP)) {
+        printf("here\n");
         if (strcmp(parser->current_tok->val, "data") == 0) {
             parser->current_tok = prev_tok(parser, 1);
             parser->lex->tok_buf_index--;
@@ -451,7 +450,6 @@ void parser_parse_program (parser* parser) {
 }
 
 void parser_reset_buf_indexes (parser* parser) {
-    printf("%zu\n", parser->var_buf_index);
     parser->var_count = parser->var_buf_index;
     parser->label_count = parser->label_buf_index;
     parser->instr_count = parser->instr_buf_index;
@@ -460,27 +458,31 @@ void parser_reset_buf_indexes (parser* parser) {
     parser->var_buf_index = 0;
 }
 
-void parser_free_all (parser* parser) {
-    for (size_t i = 0;i<parser->label_count;i++) {
+void free_labels (parser* parser) {
+    for (size_t i = 0;i<parser->label_count;i++) 
         free(parser->label_buf[i]);
-    }
-    printf("freed labels\n");
+}
+
+void free_instrs (parser* parser) {
     for (size_t i = 0; i < parser->instr_count; i++) {
-        for (size_t j=0;j<3;j++) {
-            //free(parser->instr_buf[i]->operands[j]->val);
-            free(parser->instr_buf[i]->operands[j]);
-        }
-        printf("freed operands\n");
+        free(parser->instr_buf[i]->operands[0]);
+        free(parser->instr_buf[i]->operands[1]);
+        free(parser->instr_buf[i]->operands[2]);
         free(parser->instr_buf[i]->opcode);
         free(parser->instr_buf[i]);
     }
-    printf("Freed intsr\n");
+}
 
-    for(size_t i=0;i<parser->var_count;i++){
-        for (size_t j=0;j<parser->var_buf[i]->value_count;j++) {
+void free_variables (parser* parser) {
+    for (size_t i=0;i<parser->var_count;i++) {
+        for (size_t j=0;j<parser->var_buf[i]->value_count;j++)
             free(parser->var_buf[i]->value_buf[j]);
-        }
         free(parser->var_buf[i]);
     }
-    printf("freed vars\n");
+}
+
+void parser_free_all (parser* parser) {
+    free_labels(parser);
+    free_instrs(parser);
+    free_variables(parser);
 }
