@@ -1,12 +1,12 @@
-#include "lexer.h"
+#include "include/lexer.h"
 
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "error.h"
-#include "token.h"
+#include "include/error.h"
+#include "include/token.h"
 
 /*****************************************************************************
  * lexer_init: Creates a new lexer struct, initialise the struct             *

@@ -1,17 +1,17 @@
-#include "parser.h"
+#include "include/parser.h"
 
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "error.h"
-#include "instruction.h"
-#include "lexer.h"
-#include "operand.h"
-#include "token.h"
-#include "value.h"
-#include "variable.h"
+#include "include/error.h"
+#include "include/instruction.h"
+#include "include/lexer.h"
+#include "include/operand.h"
+#include "include/token.h"
+#include "include/value.h"
+#include "include/variable.h"
 
 parser* parser_init (lexer* lex) {
     parser* parser = malloc(sizeof(parser));

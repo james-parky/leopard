@@ -1,14 +1,16 @@
-#include "transpiler.h"
+#include "include/transpiler.h"
+
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "lexer.h"
-#include "variable.h"
-#include "parser.h"
 #include <string.h>
-#include "value.h"
-#include "instruction.h"
-#include "operand.h"
-#include <ctype.h>
+
+#include "include/instruction.h"
+#include "include/lexer.h"
+#include "include/operand.h"
+#include "include/parser.h"
+#include "include/value.h"
+#include "include/variable.h"
 
 #define BOLD "\x1B[1m"
 #define GREEN "\033[32;1m"

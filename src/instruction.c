@@ -1,10 +1,10 @@
-#include "instruction.h"
+#include "include/instruction.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
-#include "operand.h"
+#include "include/operand.h"
 
 instruction* new_instruction(char* opcode_str) {
     instruction* instr = malloc(sizeof(instruction));

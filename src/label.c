@@ -1,4 +1,4 @@
-#include "label.h"
+#include "include/label.h"
 
 #include <stdlib.h>
 #include <string.h>

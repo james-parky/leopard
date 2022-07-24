@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "transpiler.h"
+#include "include/transpiler.h"
 
 int main (int argc, char* argv[]) {
     if (argc < 3) fprintf(stderr, "Too few arguments supplied.\n");

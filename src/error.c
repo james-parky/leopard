@@ -1,11 +1,11 @@
-#include "error.h"
+#include "include/error.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "lexer.h"
-#include "parser.h"
+#include "include/lexer.h"
+#include "include/parser.h"
 
 #define BOLD "\x1B[1m"
 #define GREEN "\033[32;1m"

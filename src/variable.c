@@ -1,8 +1,10 @@
-#include "value.h"
-#include "variable.h"
+#include "include/variable.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+#include "include/value.h"
 
 variable* new_variable(variable_type type, char* name){
     variable* var = malloc(sizeof(variable));
