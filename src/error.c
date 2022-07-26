@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "include/instruction.h"
 #include "include/lexer.h"
 #include "include/parser.h"
 
@@ -73,5 +74,13 @@ void throw_non_ascii_error (lexer* lex, size_t line_num, size_t col_num,
     fprintf(stderr, " non-ASCII characters are not allowed\n");
     print_error_line(line_num, lex->file_name);
     fprintf(stderr, "%s%*c%s\n", GREEN, (int)col_num + 1, '^', RESET);
+    exit(1);
+}
+
+void throw_invalid_reg_error (parser* parser, token* tok) {
+    print_error_header(parser->lex->file_name, tok->line_num, tok->col_num);
+    fprintf(stderr, " register not recognized\n");
+    print_error_line(tok->line_num, parser->lex->file_name);
+    print_underline(tok);
     exit(1);
 }

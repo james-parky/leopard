@@ -1,7 +1,9 @@
 #ifndef __ERROR_H__
 #define __ERROR_H__
 
+#include "instruction.h"
 #include "parser.h"
+#include "transpiler.h"
 
 typedef enum {
     ERROR_NEG_NUM,
@@ -27,4 +29,5 @@ void throw_unexpected_symbol_error (parser* parser, const int error_code);
 void throw_non_ascii_error (lexer* lex, size_t line_num, size_t col_num,
                             wchar_t wc);
 
+void throw_invalid_reg_error (parser* parser, token* tok);
 #endif
