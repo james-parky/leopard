@@ -21,17 +21,17 @@
 &lt;num_reg> ::= "0" | "1" | ... | "32"
 
 &lt;name_reg> ::= "zero" | "at" | "v0" | "v1" | "a0" | "a1" | "a2" | "a3"  
-               | "t0" | "t1" | "t2" | "t3" | "t4" | "t5" | "t6" | "t7"  
-               | "s0" | "s1" | "s2" | "s3" | "s4" | "s5" | "s6" | "s7"  
-               | "t8" | "t9" | "k0" | "k1" | "gp" | "sp" | "fp" | "ra"  
+&nbsp;&nbsp;&nbsp;| "t0" | "t1" | "t2" | "t3" | "t4" | "t5" | "t6" | "t7"  
+&nbsp;&nbsp;&nbsp;| "s0" | "s1" | "s2" | "s3" | "s4" | "s5" | "s6" | "s7"  
+&nbsp;&nbsp;&nbsp;| "t8" | "t9" | "k0" | "k1" | "gp" | "sp" | "fp" | "ra"
 
 &lt;register> ::= "$"&lt;num_reg> | "$"&lt;name_reg>
 
 &lt;offset_register> ::= "("&lt;register>")"  
- | &lt;dec_num>"("&lt;register>")"
-| &lt;hex_num>"("&lt;register>")"
-| &lt;string>"+""("&lt;register>")"
-| &lt;string>"("&lt;register>")"
+&nbsp;&nbsp;&nbsp;&nbsp;| &lt;dec_num>"("&lt;register>")"
+&nbsp;&nbsp;&nbsp;&nbsp;| &lt;hex_num>"("&lt;register>")"
+&nbsp;&nbsp;&nbsp;&nbsp;| &lt;string>"+""("&lt;register>")"
+&nbsp;&nbsp;&nbsp;&nbsp;| &lt;string>"("&lt;register>")"
 
 &lt;operand> ::= &lt;register> | &lt;offset_register> | &lt;data_value>
 
