@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "include/error.h"
 #include "include/instruction.h"
 #include "include/lexer.h"
 #include "include/operand.h"
@@ -29,7 +30,20 @@ transpiler* transpiler_init(parser* parser, char* in_file_name, FILE* out,
     return transp;
 }
 
-void replace_registers (instruction* instr) {
+// int is_mips_name_reg(char* reg) {
+//     const char* reg_names[32] = {"zero", "at", "v0", "v1", "a0", "a1",
+//                                         "a2", "a3", "t0", "t1", "t2", "t3",
+//                                         "t4", "t5", "t6", "t7", "s0", "s1",
+//                                         "s2", "s3", "s4", "s5", "s6", "s7",
+//                                         "t8", "t9", "k0", "k1", "gp", "sp",
+//                                         "fp", "ra"};
+//     for (short i = 0; i < 32; i++) 
+//         if(strcmp(reg, reg_names[i]) == 0) return i;
+    
+//     return -1;
+// }
+
+void replace_registers (transpiler* transp, instruction* instr) {
     /*
     a0 - x0
     a1 - x1
@@ -54,29 +68,6 @@ void replace_registers (instruction* instr) {
     fp - x29
     ra - 30
     */
-
-    const char* mips_name_regs[32] = {"zero", "at", "v0", "v1", "a0", "a1",
-                                        "a2", "a3", "t0", "t1", "t2", "t3",
-                                        "t4", "t5", "t6", "t7", "s0", "s1",
-                                        "s2", "s3", "s4", "s5", "s6", "s7",
-                                        "t8", "t9", "k0", "k1", "gp", "sp",
-                                        "fp", "ra"};
-
-    const char* mips_base_regs[32] = {"r0", "r1", "r2", "r3", "r4", "r5", "r6",
-                                        "r7", "r8", "r9", "r10", "r11", "r12",
-                                        "r13", "r14", "r15", "r16", "r17",
-                                        "r18", "r19", "r20", "r21", "r22",
-                                        "r23", "r24", "r25", "r26", "r27",
-                                        "r28", "r29", "r30", "r31"};
-
-    const char* arm64_regs[32] = {"w0", "w1", "w2", "w3", "w4", "w5", "w6",
-                                    "w7", "w8", "w9", "w10", "w11", "w12",
-                                    "w13", "w14", "w15", "w16", "w17", "w18",
-                                    "w19", "w20", "w21", "w22", "w23", "w24",
-                                    "w25", "w26", "w27", "w28", "w29", "w30",
-                                    "w31"};
-                                    
-    
 }
 
 void write_ascii_var_dec(transpiler* transp, variable* var) {
@@ -346,7 +337,7 @@ void write_base_instr(transpiler* transp, instruction* instr) {
 }
 
 void write_instr(transpiler* transp, instruction* instr) {
-    replace_registers(instr);
+    replace_registers(transp, instr);
     if(is_pseudo(instr)) write_pseudo_instr(transp, instr);
     else write_base_instr(transp, instr);
 
@@ -375,6 +366,7 @@ void write_data_section (transpiler* transp) {
 }
 
 void write_text_section (transpiler* transp) {
+    // Change based on what entry point is, if there is code above where the entry point label is
     fprintf(transp->out, "\n.text\n.globl _start\n_start:\n");
     size_t current_lab_index = 0;
     for (size_t i = 0; i < transp->parser->instr_count; i++) {
@@ -410,7 +402,7 @@ void transpile_file (FILE* in, char* in_file_name, FILE* out,
                                             out_file_name);
     transpiler_code_gen(transp);
     lexer_free(lex);
-    parser_free_all(parser);
+    parser_free(parser);
     free(lex);
     free(parser);
     free(transp);

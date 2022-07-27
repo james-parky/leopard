@@ -42,7 +42,7 @@ void lexer_tok_dump (lexer* lex);
 void lexer_reset_buf_index (lexer* lex);
 
 /*****************************************************************************
- * lexer_free_all: Free all tokens stored within the provided lexer struct.  *
+ * lexer_free: Free all tokens stored within the provided lexer struct.      *
  *****************************************************************************/
 void lexer_free (lexer* lex);
 
