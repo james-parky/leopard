@@ -28,9 +28,9 @@
 &lt;register> ::= "$"&lt;num_reg> | "$"&lt;name_reg>
 
 &lt;offset_register> ::= "("&lt;register>")"  
-&emsp;| &lt;dec_num>"("&lt;register>")"
-&emsp;| &lt;hex_num>"("&lt;register>")"
-&emsp;| &lt;string>"+""("&lt;register>")"
+&emsp;| &lt;dec_num>"("&lt;register>")"  
+&emsp;| &lt;hex_num>"("&lt;register>")"  
+&emsp;| &lt;string>"+""("&lt;register>")"  
 &emsp;| &lt;string>"("&lt;register>")"
 
 &lt;operand> ::= &lt;register> | &lt;offset_register> | &lt;data_value>
