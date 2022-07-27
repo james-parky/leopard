@@ -21,17 +21,17 @@
 &lt;num_reg> ::= "0" | "1" | ... | "32"
 
 &lt;name_reg> ::= "zero" | "at" | "v0" | "v1" | "a0" | "a1" | "a2" | "a3"  
-&nbsp;&nbsp;&nbsp;| "t0" | "t1" | "t2" | "t3" | "t4" | "t5" | "t6" | "t7"  
-&nbsp;&nbsp;&nbsp;| "s0" | "s1" | "s2" | "s3" | "s4" | "s5" | "s6" | "s7"  
-&nbsp;&nbsp;&nbsp;| "t8" | "t9" | "k0" | "k1" | "gp" | "sp" | "fp" | "ra"
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| "t0" | "t1" | "t2" | "t3" | "t4" | "t5" | "t6" | "t7"  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| "s0" | "s1" | "s2" | "s3" | "s4" | "s5" | "s6" | "s7"  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| "t8" | "t9" | "k0" | "k1" | "gp" | "sp" | "fp" | "ra"
 
 &lt;register> ::= "$"&lt;num_reg> | "$"&lt;name_reg>
 
 &lt;offset_register> ::= "("&lt;register>")"  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;dec_num>"("&lt;register>")"  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;hex_num>"("&lt;register>")"  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;string>"+""("&lt;register>")"  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;string>"("&lt;register>")"
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;dec_num>"("&lt;register>")"  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;hex_num>"("&lt;register>")"  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;string>"+""("&lt;register>")"  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;string>"("&lt;register>")"
 
 &lt;operand> ::= &lt;register> | &lt;offset_register> | &lt;data_value>
 
