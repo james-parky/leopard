@@ -30,7 +30,7 @@
 > <register> ::= "$"<num_reg> | "$"<name_reg>  
 > 
 > <offset_register> ::= "("<register>")"    
->                    | <dec_num>"("<register>")"
+>                    | \<dec_num>"("<register>")"
 >                    | <hex_num>"("<register>")"
 >                    | <string>"+""("<register>")"
 >                    | <string>"("<register>")"  
