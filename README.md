@@ -2,53 +2,53 @@
 
 ## A MIPS32 Transpiler
 
-<neg_value> ::= "-"<dec_num> | "-"<dec_num>":"<dec_num> | "-"<dec_num>":"<hex_num>
+&lt; neg_value> ::= "-"&lt; dec_num> | "-"&lt; dec_num>":"&lt; dec_num> | "-"&lt; dec_num>":"&lt; hex_num>
 
-<dec_value> ::= <dec_num> | <dec_num>":"<dec_num> | <dec_num>":"<hex_num>
+&lt; dec_value> ::= &lt; dec_num> | &lt; dec_num>":"&lt; dec_num> | &lt; dec_num>":"&lt; hex_num>
 
-<hex_value> ::= <hex_num> | <hex_num>":"<dec_num> | <hex_num>":"<hex_num>
+&lt; hex_value> ::= &lt; hex_num> | &lt; hex_num>":"&lt; dec_num> | &lt; hex_num>":"&lt; hex_num>
 
-<data_value> ::= <neg_value> | <dec_value> | <hex_value>
+&lt; data_value> ::= &lt; neg_value> | &lt; dec_value> | &lt; hex_value>
 
-<data_list> ::= <data_value> | <data_value>","<data_list>
+&lt; data_list> ::= &lt; data_value> | &lt; data_value>","&lt; data_list>
 
-<data_type> ::= "ascii" | "asciiz" | "word" | "half" | "byte" | "space"
+&lt; data_type> ::= "ascii" | "asciiz" | "word" | "half" | "byte" | "space"
 
-<var_dec> ::= "."<data_type><data_list>
+&lt; var_dec> ::= "."&lt; data_type>&lt; data_list>
 
-<var_decs> ::= <var_dec> | <var_dec><var_decs>
+&lt; var_decs> ::= &lt; var_dec> | &lt; var_dec>&lt; var_decs>
 
-<data_section> ::= ".data"<var_decs>
+&lt; data_section> ::= ".data"&lt; var_decs>
 
-<num_reg> ::= "0" | "1" | ... | "32"
+&lt; num_reg> ::= "0" | "1" | ... | "32"
 
-<name_reg> ::= "zero" | "at" | "v0" | "v1" | "a0" | "a1" | "a2" | "a3"
+&lt; name_reg> ::= "zero" | "at" | "v0" | "v1" | "a0" | "a1" | "a2" | "a3"
 | "t0" | "t1" | "t2" | "t3" | "t4" | "t5" | "t6" | "t7"
 | "s0" | "s1" | "s2" | "s3" | "s4" | "s5" | "s6" | "s7"
 | "t8" | "t9" | "k0" | "k1" | "gp" | "sp" | "fp" | "ra"
 
-<register> ::= "$"<num_reg> | "$"<name_reg>
+&lt; register> ::= "$"&lt; num_reg> | "$"&lt; name_reg>
 
-<offset_register> ::= "("<register>")"  
- | \<dec_num>"("<register>")"
-| <hex_num>"("<register>")"
-| <string>"+""("<register>")"
-| <string>"("<register>")"
+&lt; offset_register> ::= "("&lt; register>")"  
+ | \&lt; dec_num>"("&lt; register>")"
+| &lt; hex_num>"("&lt; register>")"
+| &lt; string>"+""("&lt; register>")"
+| &lt; string>"("&lt; register>")"
 
-<operand> ::= <register> | <offset_register> | <data_value>
+&lt; operand> ::= &lt; register> | &lt; offset_register> | &lt; data_value>
 
-<operand_list> ::= <operand> | <operand>","<operand_list>
+&lt; operand_list> ::= &lt; operand> | &lt; operand>","&lt; operand_list>
 
-<instruction> ::= <opcode> | <opcode><operand_list>
+&lt; instruction> ::= &lt; opcode> | &lt; opcode>&lt; operand_list>
 
-<label> ::= <string>":"
+&lt; label> ::= &lt; string>":"
 
-<text_statement> ::= <label> | <instruction>
+&lt; text_statement> ::= &lt; label> | &lt; instruction>
 
-<text_body> ::= <text_statement> | <text_statement><text_body>
+&lt; text_body> ::= &lt; text_statement> | &lt; text_statement>&lt; text_body>
 
-<text_section> ::= ".text"".globl"<string><text_body> | ".text"<text_body>
+&lt; text_section> ::= ".text"".globl"&lt; string>&lt; text_body> | ".text"&lt; text_body>
 
-<program> ::= <text_section>
-| <data_section><text_section>
-| <text_section><data_section>
+&lt; program> ::= &lt; text_section>
+| &lt; data_section>&lt; text_section>
+| &lt; text_section>&lt; data_section>
