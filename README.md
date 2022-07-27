@@ -28,10 +28,10 @@
 &lt;register> ::= "$"&lt;num_reg> | "$"&lt;name_reg>
 
 &lt;offset_register> ::= "("&lt;register>")"  
-&emsp;&emsp;&emsp;&emsp;| &lt;dec_num>"("&lt;register>")"  
-&emsp;&emsp;&emsp;&emsp;| &lt;hex_num>"("&lt;register>")"  
-&emsp;&emsp;&emsp;&emsp;| &lt;string>"+""("&lt;register>")"  
-&emsp;&emsp;&emsp;&emsp;| &lt;string>"("&lt;register>")"
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;dec_num>"("&lt;register>")"  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;hex_num>"("&lt;register>")"  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;string>"+""("&lt;register>")"  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;| &lt;string>"("&lt;register>")"
 
 &lt;operand> ::= &lt;register> | &lt;offset_register> | &lt;data_value>
 
