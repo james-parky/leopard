@@ -153,6 +153,13 @@ void lex_line (lexer* lex, char* buf, size_t line_num) {
                     free(str);
                 }
                 break;
+            case '\'': {
+                    char c[2];
+                    c[0] = buf[col+1]; c[1] = '\0';
+                    lexer_add_tok(lex, TOK_CHAR, c, line_num, col);
+                    col += 2;
+                }
+                break;
             default:
                 if(is_identifier(buf[col])) {
                     size_t identifier_len = get_identifier_len(buf + col);

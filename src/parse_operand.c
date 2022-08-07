@@ -7,6 +7,7 @@
 #include "include/instruction.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 /*****************************************************************************
  * parse_operand: Parses a valid operand within MIPS - which can be either   *
@@ -103,11 +104,12 @@ void parse_operand (parser* parser) {
                                     idn_inx_reg);
             free(idn_inx_reg);
         } else {
+            printf("found identifier as operand\n");
             const size_t op_len = strlen(prev_tok(parser, 1)->val);
             char* idn = malloc(sizeof(char) * op_len + 1);
             strncpy(idn, prev_tok(parser, 1)->val, op_len);
             idn[op_len] = '\0';
-            instruction_add_operand(parser->current_instr, OP_DEC_NUM,
+            instruction_add_operand(parser->current_instr, OP_IDN,
                                     idn);
             free(idn);
         }

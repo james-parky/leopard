@@ -53,7 +53,9 @@ void parse_variable_declaration (parser* parser, char* var_name) {
             parser_add_var(parser, type, var_name);
             parser->current_var = prev_var(parser, 1);
 
-            parse_data_list(parser);
+            if (accept(parser, TOK_CHAR)) {
+                variable_add_value(parser->current_var, VAL_CHAR, prev_tok(parser, 1)->val);
+            } else parse_data_list(parser);
 
         } else if (strcmp(data_type, "SPACE") == 0) {
             parser->current_tok = next_tok(parser);
