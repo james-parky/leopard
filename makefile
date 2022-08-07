@@ -11,6 +11,10 @@ INC=$(SRC)/include
 OBJ=obj
 OBJS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 
+ASM=asm
+
+GEN=gen
+
 CFLAGS = -O1 -Wall -I$(INC)
 
 all:$(BIN)
@@ -22,4 +26,11 @@ $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
-	rm $(BINDIR)/* $(OBJ)/*
+	rm $(BINDIR)/* $(OBJ)/* $(GEN)/*
+
+run-asm:
+	./bin/leopard $(ASM)/foo.asm $(GEN)/foo.s
+
+run-c:
+	./bin/leopard $(ASM)/foo.asm $(GEN)/foo.c
+	$(CC) -Wall -o foo $(GEN)/foo.c -S
