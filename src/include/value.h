@@ -10,7 +10,8 @@ typedef enum {
     VAL_HEX_NUM,
     VAL_IDENTIFIER,
     VAL_ASCII,
-    VAL_ASCIIZ
+    VAL_ASCIIZ,
+    VAL_CHAR
 } value_type;
 
 typedef struct {

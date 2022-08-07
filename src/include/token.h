@@ -6,6 +6,7 @@
 typedef enum {  
     TOK_IDENTIFIER,
     TOK_STRING,
+    TOK_CHAR,
     TOK_COMMENT,
     TOK_L_PAREN,
     TOK_R_PAREN,
